@@ -15,4 +15,3 @@ elixir(function(mix) {
     mix.less('app.less')
         .copy('bower_components/angular/angular.min.js', 'public/js/vendor/angular.js');
 });
-

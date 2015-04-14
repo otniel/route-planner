@@ -16,7 +16,7 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 Route::get('map', function() {
-    return view('map');
+    return view('mapa');
 });
 #Route::controllers([
 #	'auth' => 'Auth\AuthController',
