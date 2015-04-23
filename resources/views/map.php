@@ -1,33 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Route Planner</title>
-
-        <link href="css/app.css" rel="stylesheet">
-        <!-- Angular -->
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-        <script type="text/javascript" src="js/vendor/angular.js"></script>
-        <script type="text/javascript" src="js/app.js"></script>
-
-        <!-- Fonts -->
-        <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]-->
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <!--![endif]-->
-        <style>
-            small { font-size: 1em; color: gray; }
-        </style>
+        <title></title>
+        <link rel="stylesheet" href="css/app.css"/>
+        <script src="http://maps.google.com/maps/api/js?sensor=true&key=AIzaSyBO3DTQrl7luM4J2ZcDeQ0kKq9iZ-3oKQI"></script>
+        <script src="js/vendor/gmaps.js"></script>
+        <script src="js/vendor/angular.js"></script>
     </head>
-    <body>
-        <div class="map-canvas"></div>
-        <!-- Scripts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <body ng-app="map">
+        <div style="position:absolute; width:100%; height:100%;" id="map" ng-controller="MapController as mapCtrl"></div>
+        <form class="navbar-form navbar-fixed-top" role="search">
+            <div align="center" class="form-group">
+                <input type="text" class="form-control" placeholder="Search Address">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <script src="js/app.js"></script>
     </body>
 </html>

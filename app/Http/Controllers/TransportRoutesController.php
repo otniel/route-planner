@@ -3,7 +3,7 @@
 use Laracasts\Commander\CommanderTrait;
 use RoutePlanner\Http\Requests;
 use RoutePlanner\Http\Controllers\Controller;
-use RoutePlanner\TransportationRoutes\GenerateRouteCommand;
+use RoutePlanner\TransportRoutes\GenerateRouteCommand;
 use RoutePlanner\Http\Requests\GenerateRouteRequest;
 
 class TransportRoutesController extends Controller {
@@ -38,7 +38,7 @@ class TransportRoutesController extends Controller {
      */
 	public function store(GenerateRouteRequest $request)
 	{
-        $this->execute(GenerateRouteCommand::class);
+        return $this->execute(GenerateRouteCommand::class);
 	}
 
 	/**

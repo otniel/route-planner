@@ -1,4 +1,4 @@
-<?php namespace RoutePlanner\TransportationRoutes;
+<?php namespace RoutePlanner\TransportRoutes;
 
 use Laracasts\Commander\CommandHandler;
 
@@ -12,7 +12,21 @@ class GenerateRouteCommandHandler implements CommandHandler {
      */
     public function handle($command)
     {
-        dd($command);
+
+        return response()->json([
+            'step1' => [
+                'latitude'  => 25.312312323,
+                'longitude' => -100.1214399999998
+            ],
+            'step2' => [
+                'latitude'  => 25.312312323,
+                'longitude' => -100.121423212439999998
+            ],
+            'step3' => [
+                'latitude'  => 25.312312323,
+                'longitude' => -100.4142399999998
+            ]
+        ]);
     }
 
 }

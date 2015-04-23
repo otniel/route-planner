@@ -1,4 +1,4 @@
-<?php namespace RoutePlanner\TransportationRoutes;
+<?php namespace RoutePlanner\TransportRoutes;
 
 class GenerateRouteCommand {
 

@@ -11,16 +11,19 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', function() {
+    return redirect('map');
+});
 
 Route::get('home', 'HomeController@index');
 
 Route::get('map', function() {
-    return view('mapa');
+    return view('map');
 });
+
 #Route::controllers([
 #	'auth' => 'Auth\AuthController',
 #	'password' => 'Auth\PasswordController',
 #]);
 
-Route::get('generate', 'TransportRoutesController@store');
+Route::post('generate', 'TransportRoutesController@store');

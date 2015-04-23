@@ -1,64 +1,110 @@
-var mark;
-var map;
-var markers = [];
+(function() {
+    app = angular.module('map', []);
 
-function initialize() {
-    mark=0;
-    var mycenter = new google.maps.LatLng(25.726406, -100.31190379999998);
-    var mapOptions = {
-        zoom: 15,
-        center: mycenter,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-    // LLamada a addMarker() si el mapa el mapa es clickeado.
-    google.maps.event.addListener(map, 'click', function(event) {
-        addMarker(event.latLng);
+    app.controller('MapController', function($http) {
+        // Simple POST request example (passing data) :
+        $http.post('/generate', {
+            start: {
+                latitude: 25.232131,
+                longitude: -100.12121212121
+            },
+            end: {
+                latitude: 25.123512312,
+                longitude: -100.110019128889
+            }
+        }).success(function(data, status, headers, config) {
+            console.log("Llego a success");
+            console.log(data);
+            console.log(config);
+        }).error(function(data, status, headers, config) {
+            console.log("Llego a error");
+            console.log(status);
+        });
     });
-}
 
-// agreaga marker y valores de lat y lon en array.
-function addMarker(location) {
-    if (mark < 2) {
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
+    var map = new GMaps({
+        div: '#map',
+        lat: 25.726406,
+        lng: -100.31190379999998
+    });
 
-        var infowindow = new google.maps.InfoWindow({
-            content: 'Latitud: ' + location.lat() + '<br>Longitud: ' + location.lng()
-        });
+    GMaps.geolocate({
+        success: function(position) {
+            map.setCenter(position.coords.latitude, position.coords.longitude);
+        },
+        error: function(error) {
+            alert('Geolocation failed: '+error.message);
+        },
+        not_supported: function() {
+            alert("Your browser does not support geolocation");
+        }
+    });
 
-        infowindow.open(map,marker);
-        markers.push(marker);
-    }
-    mark++;
-}
+    map.setContextMenu({
+        control: 'map',
+        options: [{
+            title: 'Directions from here',
+            name: 'add_marker',
+            action: function(e) {
+                this.addMarker({
+                    lat: e.latLng.lat(),
+                    lng: e.latLng.lng(),
+                    title: 'New marker'
+                });
+            }
+        }, {
+            title: 'Directions to here',
+            name: 'center_here',
+            action: function(e) {
+                this.setCenter(e.latLng.lat(), e.latLng.lng());
+            }
+        }]
+    });
+})();
 
-// Muestra todos los markers.
-function setAllMap(map) {
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
-    }
-}
+ /*(function() {
 
-// Quita los marcadores del mapa.
-function clearMarkers() {
-    setAllMap(null);
-    mark = 0;
-}
 
-// Muestra los marcadores en el mapa.
-function showMarkers() {
-    setAllMap(map);
-}
+    var map = new GMaps({
+        div: '#map',
+        lat: 25.726406,
+        lng: -100.31190379999998
+    });
 
-// Quita los marcadores del array y el mapa.
-function deleteMarkers() {
-    clearMarkers();
-    markers = [];
-}
+    GMaps.geolocate({
+        success: function(position) {
+            map.setCenter(position.coords.latitude, position.coords.longitude);
+        },
+        error: function(error) {
+            alert('Geolocation failed: '+error.message);
+        },
+        not_supported: function() {
+            alert("Your browser does not support geolocation");
+        },
+        always: function() {
+            alert("Done!");
+        }
+    });
 
-google.maps.event.addDomListener(window, 'load', initialize);
+    map.setContextMenu({
+        control: 'map',
+        options: [{
+            title: 'Add marker',
+            name: 'add_marker',
+            action: function(e) {
+                this.addMarker({
+                    lat: e.latLng.lat(),
+                    lng: e.latLng.lng(),
+                    title: 'New marker'
+                });
+            }
+        }, {
+            title: 'Center here',
+            name: 'center_here',
+            action: function(e) {
+                this.setCenter(e.latLng.lat(), e.latLng.lng());
+            }
+        }]
+    });
+})();
+*/
