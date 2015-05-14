@@ -1,8 +1,15 @@
 <?php namespace RoutePlanner\TransportRoutes;
 
 use Laracasts\Commander\CommandHandler;
+use RoutePlanner\TransportRoutes\PlanningEngineParser\RouteParser;
 
 class GenerateRouteCommandHandler implements CommandHandler {
+
+
+    public function __construct(RouteParser $routeParser)
+    {
+        $this->routeParser = $routeParser;
+    }
 
     /**
      * Handle the command.
@@ -13,7 +20,7 @@ class GenerateRouteCommandHandler implements CommandHandler {
     public function handle($command)
     {
 
-        return response()->json([
+        /*return response()->json([
             'step1' => [
                 'latitude'  => 25.312312323,
                 'longitude' => -100.1214399999998
@@ -26,7 +33,8 @@ class GenerateRouteCommandHandler implements CommandHandler {
                 'latitude'  => 25.312312323,
                 'longitude' => -100.4142399999998
             ]
-        ]);
+        ]);*/
+        return response()->json($this->routeParser->getRoutes());
     }
 
 }

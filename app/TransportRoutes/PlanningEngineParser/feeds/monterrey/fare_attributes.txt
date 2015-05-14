@@ -1,0 +1,4 @@
+fare_id,price,currency_type,payment_method,transfers,transfer_duration
+E,5.25,MXP,0,0,
+P,10.00,MXP,0,0,
+G,15.25,MXP,0,0,

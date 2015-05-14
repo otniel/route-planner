@@ -15,4 +15,5 @@ elixir(function(mix) {
     mix.less('app.less')
         .copy('vendor/bower_components/angular/angular.min.js', 'public/js/vendor/angular.js')
         .copy('vendor/bower_components/gmaps/gmaps.js', 'public/js/vendor/gmaps.js');
+    mix.phpSpec();
 });

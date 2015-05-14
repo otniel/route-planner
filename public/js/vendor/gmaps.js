@@ -345,7 +345,7 @@ var GMaps = (function(global) {
       ul.style.background = 'white';
       ul.style.listStyle = 'none';
       ul.style.padding = '8px';
-      ul.style.boxShadow = '2px 2px 6px #eee';
+      ul.style.boxShadow = '2px 2px 6px #ccc';
 
       doc.body.appendChild(ul);
 

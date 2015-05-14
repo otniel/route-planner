@@ -1,0 +1,23 @@
+route_id,agency_id,route_short_name,route_long_name,route_type
+8,TC,8,Ruta 8,3
+12,TC,12,Ruta 12,3
+17,TC,17,Ruta 17,2
+22,TC,22,Ruta 22,3
+27,TC,27,Ruta 27,3
+34a,FB,34a,Mision,3
+34b,FB,34b,Universidad,3
+
+
+65,MV,65,Directo,3
+92,MV,92,Ruta93,3
+100,MV,100,Los santos,3
+111,MV,111,Liberty,3
+122,MV,122,Venturas,3
+123,MV,123,London,3
+134,MV,134,Fierro,3
+143,MV,143,Madrid,3
+162,MV,162,Carcer,3
+252,FB,252,Ruta 252,3
+260,FB,260,Ruta 260,3
+417,FB,417,Ruta 417,3
+512,FB,512,Ruta 512,3

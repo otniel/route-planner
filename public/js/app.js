@@ -13,16 +13,20 @@
                 longitude: -100.110019128889
             }
         }).success(function(data, status, headers, config) {
-            console.log("Llego a success");
-            console.log(data);
-            console.log(config);
+            route = Object.keys(data).map(function (key) {return data[key]});
+            app.map.drawPolyline({
+                path: route,
+                strokeColor: '#131540',
+                strokeOpacity: 0.6,
+                strokeWeight: 3
+            });
         }).error(function(data, status, headers, config) {
             console.log("Llego a error");
             console.log(status);
         });
     });
 
-    var map = new GMaps({
+    app.map = new GMaps({
         div: '#map',
         lat: 25.726406,
         lng: -100.31190379999998
@@ -40,7 +44,7 @@
         }
     });
 
-    map.setContextMenu({
+    app.map.setContextMenu({
         control: 'map',
         options: [{
             title: 'Directions from here',
