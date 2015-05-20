@@ -1,35 +1,33 @@
 (function() {
     app = angular.module('map', []);
 
-    app.controller('MapController', function($http) {
-        // Simple POST request example (passing data) :
-        $http.post('/generate', {
-            start: {
-                latitude: 25.232131,
-                longitude: -100.12121212121
-            },
-            end: {
-                latitude: 25.123512312,
-                longitude: -100.110019128889
-            }
-        }).success(function(data, status, headers, config) {
-            route = Object.keys(data).map(function (key) {return data[key]});
-            app.map.drawPolyline({
-                path: route,
-                strokeColor: '#131540',
-                strokeOpacity: 0.6,
-                strokeWeight: 3
-            });
-        }).error(function(data, status, headers, config) {
-            console.log("Llego a error");
-            console.log(status);
-        });
-    });
-
     app.map = new GMaps({
         div: '#map',
         lat: 25.726406,
         lng: -100.31190379999998
+    });
+
+    app.controller('MapController', function($http) {
+        // Simple POST request example (passing data) :
+        $http.post('/generate', {
+            start: { latitude: 25.232131, longitude: -100.12121212121 },
+            end: { latitude: 25.123512312, longitude: -100.110019128889 }
+        }).success(function(data, status, headers, config) {
+            routes = Object.keys(data).map(function (key) {return data[key]});
+            colors = ['#131540', '#1ABCD0', '#FA14C3', '#AB2CFF', '#0BFCAB', '#1FBA03', '#BAC132', '#AAB12F']
+            for(i = 0; i<= routes.length; i++) {
+                app.map.drawPolyline({
+                path: routes[i],
+                strokeColor: colors[i],
+                strokeOpacity: 0.6,
+                strokeWeight: 5
+            });
+            }
+            
+        }).error(function(data, status, headers, config) {
+            console.log("Llego a error");
+            console.log(status);
+        });
     });
 
     GMaps.geolocate({
@@ -48,17 +46,14 @@
         control: 'map',
         options: [{
             title: 'Directions from here',
-            name: 'add_marker',
+            name: 'directions_from_here',
             action: function(e) {
-                this.addMarker({
-                    lat: e.latLng.lat(),
-                    lng: e.latLng.lng(),
-                    title: 'New marker'
-                });
+                console.log("LATITUDE: " + e.latLng.lat());
+                console.log("LONGITUDE: " + e.latLng.lng());
             }
         }, {
             title: 'Directions to here',
-            name: 'center_here',
+            name: 'directions_from_here',
             action: function(e) {
                 this.setCenter(e.latLng.lat(), e.latLng.lng());
             }
