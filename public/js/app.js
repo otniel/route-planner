@@ -60,17 +60,17 @@
             name: 'directions_from_here',
             action: function(e) {
                 origin = e.latLng
-                console.log(app.origin_marker);
                 if(app.origin_marker) {
                     app.origin_marker.setMap(null);                
                 }
                 app.origin = Object.keys(origin).map(function (key) {return origin[key]});
                 app.origin_marker = app.map.addMarker({
                     lat: e.latLng.lat(),
-                    lng: e.latLng.lng()
+                    lng: e.latLng.lng(),
+                    infoWindow: {
+                        content: "Origin Point"
+                    }
                 });
-                console.log(app.origin);
-                console.log(app.destination);
                 updateRoute();
             }
         }, {
@@ -84,10 +84,11 @@
                 }
                 app.destination_marker = app.map.addMarker({
                     lat: e.latLng.lat(),
-                    lng: e.latLng.lng()
+                    lng: e.latLng.lng(),
+                    infoWindow: {
+                        content: "Destination Point",
+                    }
                 });
-                console.log(app.origin);
-                console.log(app.destination);
                 updateRoute();
             }
         }]
